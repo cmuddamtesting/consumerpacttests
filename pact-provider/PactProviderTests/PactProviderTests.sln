@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PactProviderTests", "PactProviderTests\PactProviderTests.csproj", "{D2026816-2E79-439C-B9F0-541D7B203E94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PactProviderMockAPI", "..\..\pact-provider-mock-api\PactProviderMockAPI\PactProviderMockAPI\PactProviderMockAPI.csproj", "{B69B67C7-9A39-458B-8734-F11953FCD760}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2026816-2E79-439C-B9F0-541D7B203E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2026816-2E79-439C-B9F0-541D7B203E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2026816-2E79-439C-B9F0-541D7B203E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2026816-2E79-439C-B9F0-541D7B203E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69B67C7-9A39-458B-8734-F11953FCD760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69B67C7-9A39-458B-8734-F11953FCD760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69B67C7-9A39-458B-8734-F11953FCD760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69B67C7-9A39-458B-8734-F11953FCD760}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54C20DF7-F287-4AFE-9954-40B738E19238}
+	EndGlobalSection
+EndGlobal
