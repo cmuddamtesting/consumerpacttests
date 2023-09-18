@@ -1,31 +1,41 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using PactProviderMockAPI.Models;
+using PactProviderMockAPI.Services;
 using System.Net;
 using System.Text;
 
 namespace PactProviderTests.ProviderStates
 {
-    public sealed class ProviderStateMiddleware
+    public class ProviderStateMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ProviderStatesContainer _providerStates;
+        private readonly ICreateProductRepository _createProductRepository;
+        private readonly IDictionary<string, Action> _providerStates;
 
         /// <summary>
         /// Set up Provider States configured for pact verification
         /// </summary>
         /// <param name="next"></param>
         /// <param name="providerStates"></param>
-        public ProviderStateMiddleware(RequestDelegate next, ProviderStatesContainer providerStates)
+        public ProviderStateMiddleware(RequestDelegate next, ICreateProductRepository createProductRepository)
         {
             _next = next;
-            _providerStates = providerStates ?? throw new ArgumentNullException(nameof(providerStates));
+            _createProductRepository = createProductRepository;
+
+            _providerStates = new Dictionary<string, Action>
+            {
+                { "", CreateProduct },
+                { "There is a new product", CreateProduct },
+                { "The product already exists", DuplicateProduct }
+            };
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             if (!IsProviderStateRequest(context))
             {
-                await _next(context);
+                await _next.Invoke(context);
                 return;
             }
 
@@ -38,7 +48,7 @@ namespace PactProviderTests.ProviderStates
                 return;
             }
 
-            if (!_providerStates.TryGetState(providerState.State, out var state))
+            if (!_providerStates.TryGetValue(providerState.State, out var state))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 await context.Response.WriteAsync($"No matching provider state for consumer:{providerState.Consumer} and state:{providerState.State}");
@@ -47,7 +57,6 @@ namespace PactProviderTests.ProviderStates
 
             state.Invoke();
             context.Response.StatusCode = (int)HttpStatusCode.OK;
-            await context.Response.WriteAsync(string.Empty);
         }
 
         private static bool IsProviderStateRequest(HttpContext context)
@@ -82,6 +91,22 @@ namespace PactProviderTests.ProviderStates
                 providerState.Consumer = providerState.Consumer ?? "";
                 return providerState;
             }
+        }
+
+        private void CreateProduct()
+        {
+            _createProductRepository.CreateProduct(new CreateProductRequest
+            {
+                ProductID = 123,
+                ProductName = "Macbook air",
+                ProductDescription = "Macbook air with M1 processor",
+                Price = 2000
+            });
+        }
+
+        private void DuplicateProduct()
+        {
+            _createProductRepository.DuplicateProduct();
         }
     }
 }
