@@ -12,8 +12,6 @@ on:
 env:
   PACT_BROKER_BASE_URL: https://chandramuddam.pactflow.io/
   PACT_BROKER_TOKEN: ctoBA7Cg_w5P-CDyIY94ZA
-  GIT_COMMIT: ${{ github.sha }}
-  GIT_REF: ${{ github.ref }}
 
 jobs:
   build:
@@ -37,4 +35,4 @@ jobs:
     - name: extract pact-cli
       run: tar xzf pact-2.0.7-linux-x86_64.tar.gz
     - name: publish pact file
-      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer-Order-Provider.json --consumer-app-version=1 --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
+      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer-Order-Provider.json --branch=${{github.ref}} --consumer-app-version=${{github.run_id}} --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
