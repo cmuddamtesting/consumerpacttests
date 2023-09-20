@@ -12,6 +12,8 @@ on:
 env:
   PACTBROKER_PACT_URI: https://chandramuddam.pactflow.io/
   BUILD_BUILDNUMBER: ${{github.run_id}}
+  BUILD_SOURCEBRANCH: ${{github.ref}}
+  PACTBROKER_PACT_TOKEN: ctoBA7Cg_w5P-CDyIY94ZA
 
 jobs:
   build:
