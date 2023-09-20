@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore /pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln
+      run: dotnet restore "/pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln"
     - name: Build
-      run: dotnet build --no-restore /pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln
+      run: dotnet build --no-restore "/pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln"
     - name: Test
-      run: dotnet test --no-build --verbosity normal /pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln
+      run: dotnet test --no-build --verbosity normal "/pact-practice/pact-consumer/PactConsumerTests/PactConsumerTests.sln"
