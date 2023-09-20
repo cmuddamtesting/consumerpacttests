@@ -11,7 +11,6 @@ on:
 
 env:
   PACT_BROKER_BASE_URL: https://chandramuddam.pactflow.io/
-  PACT_PROVIDER: ${{ env.PACT_PROVIDER }}
   PACT_BROKER_TOKEN: ctoBA7Cg_w5P-CDyIY94ZA
   GIT_COMMIT: ${{ github.sha }}
   GIT_REF: ${{ github.ref }}
