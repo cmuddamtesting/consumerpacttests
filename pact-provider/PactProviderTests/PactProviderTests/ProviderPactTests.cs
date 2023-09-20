@@ -12,6 +12,7 @@ namespace PactProviderTests.ProviderStates
     {
         private readonly PactVerifier _verifier;
         private readonly string _pactBrokerUri;
+        private readonly string _pactBrokerToken;
         private readonly string _providerVersion;
         private readonly string _tag;
         private readonly PactVerifierOptions _options;
@@ -42,6 +43,7 @@ namespace PactProviderTests.ProviderStates
                 // check if triggered by pact webhook for contract content changed even, need to run verification only for changed contract
                 // ensure the required env variables for pactUri and pactConsumer are passed in parameters of the webhook
                 _pactBrokerUri = Environment.GetEnvironmentVariable("PACTBROKER_PACT_URI");
+                _pactBrokerToken = Environment.GetEnvironmentVariable("PACTBROKER_PACT_TOKEN");
                 _providerVersion = Environment.GetEnvironmentVariable("BUILD_BUILDNUMBER");
                 _tag = GetBranchName();
             }
@@ -78,7 +80,7 @@ namespace PactProviderTests.ProviderStates
                         }).PublishResults(_providerVersion, (configure) =>
                         {
                             configure.ProviderTags(_tag);
-                        });
+                        }).TokenAuthentication(_pactBrokerToken);
                     })
                     .WithProviderStateUrl(new Uri(_options.ProviderUri + "/provider-states"))
                     .Verify();
@@ -113,7 +115,7 @@ namespace PactProviderTests.ProviderStates
         {
             if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_SOURCEBRANCH")))
             {
-                var branchName = Environment.GetEnvironmentVariable("BUILD_SOURCEBRANCH")?.Replace("refs/heads/", "").Replace('/', '_');
+                var branchName = Environment.GetEnvironmentVariable("BUILD_SOURCEBRANCH");
                 return branchName;
             }
             return string.Empty;
