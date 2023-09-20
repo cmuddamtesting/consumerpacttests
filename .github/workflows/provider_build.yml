@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  PACTBROKER_PACT_URI: https://chandramuddam.pactflow.io/
+  BUILD_BUILDNUMBER: ${{github.run_id}}
+
 jobs:
   build:
 
@@ -21,8 +25,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore  ./pact-provider/PactProviderTests/PactProviderTests/PactProviderTests.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ./pact-provider/PactProviderTests/PactProviderTests/PactProviderTests.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ./pact-provider/PactProviderTests/PactProviderTests/PactProviderTests.csproj
