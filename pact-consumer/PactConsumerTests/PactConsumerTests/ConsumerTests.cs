@@ -92,9 +92,8 @@ namespace PactConsumerTests
                 Assert.Equal("The Product already exists", result.createProductResponse.Message);
 
             });
-
-
         }
+
         public async Task<(CreateProductResponse createProductResponse, string error)> CreateProductTestAsync(CreateProductRequest request, Uri uri)
         {
             var sendRequest = new SendRequest(uri);
