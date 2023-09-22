@@ -26,7 +26,7 @@ on:
       environment:
         description: 'Environment to run tests against'
         type: environment
-        required: true
+        required: false
 env:
   PACT_BROKER_BASE_URL: https://chandramuddam.pactflow.io/
   PACT_BROKER_TOKEN: ctoBA7Cg_w5P-CDyIY94ZA
