@@ -46,8 +46,7 @@ namespace PactConsumerTests
                 .WithJsonBody(
                     new
                     {
-                        message = Match.Type("Product is created successfully"),
-                        description = Match.Type("Test description")
+                        message = Match.Type("Product is created successfully")
                     }
                 );
 
@@ -79,8 +78,7 @@ namespace PactConsumerTests
                 .WithJsonBody(
                     new
                     {
-                        message = Match.Type("The Product already exists"),
-                        description = Match.Type("Test description")
+                        message = Match.Type("The Product already exists")
                     }
                 );
 
