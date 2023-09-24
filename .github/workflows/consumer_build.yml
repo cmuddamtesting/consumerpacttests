@@ -53,4 +53,4 @@ jobs:
     - name: extract pact-cli
       run: tar xzf pact-2.0.7-linux-x86_64.tar.gz
     - name: publish pact file
-      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer1-Order-Provider1.json --branch=${{github.ref}} --consumer-app-version=${{github.run_id}} --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
+      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer-Order-Provider.json --branch=${{github.ref}} --consumer-app-version=${{github.run_id}} --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
