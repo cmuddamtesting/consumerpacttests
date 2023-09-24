@@ -40,8 +40,7 @@ jobs:
     - name: Set the value
       shell: bash
       run: |
-       echo "GIT_COMMIT=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
-       echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> "$GITHUB_ENV"
+       echo "GIT_BRANCH=$(git branch)" >> "$GITHUB_ENV"
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
