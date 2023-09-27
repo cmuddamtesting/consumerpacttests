@@ -40,7 +40,8 @@ jobs:
     - name: Set the value
       shell: bash
       run: |
-       echo "GIT_BRANCH=$(git branch)" >> "$GITHUB_ENV"
+       echo "GIT_BRANCH= ${{github.ref}}" >> "$GITHUB_ENV"
+      
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -57,4 +58,4 @@ jobs:
     - name: extract pact-cli
       run: tar xzf pact-2.0.7-linux-x86_64.tar.gz
     - name: publish pact file
-      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer-Order-Provider.json --branch=${{env.GIT_BRANCH}} --consumer-app-version=${{env.GIT_COMMIT}} --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
+      run: ./pact/bin/pact-broker publish ./pact-consumer/PactConsumerTests/PactConsumerTests/bin/Debug/net6.0/pacts/Order-Consumer-Order-Provider.json --branch= ${{github.ref}} --consumer-app-version=${{github.head_ref}} --broker-base-url=${{env.PACT_BROKER_BASE_URL}} --broker-token=${{env.PACT_BROKER_TOKEN}}
