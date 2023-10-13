@@ -2,7 +2,7 @@
 {
     public static class ConsumerPactTestsConstants
     {
-        public const string ConsumerName = "Order-Consumer";
-        public const string ProviderName = "Order-Provider";
+        public const string ConsumerName = "OrderConsumer";
+        public const string ProviderName = "OrderProvider";
     }
 }
