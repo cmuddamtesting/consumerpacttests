@@ -15,7 +15,8 @@ namespace PactConsumerTests
         {
             var config = new PactConfig
             {
-                PactDir = @"./pacts",
+                // PactDir = @"./pacts",
+                PactDir = Path.Join("..", "..", "..", "..", "pacts"),
                 Outputters = new[]
     {
                     new XUnitOutput(output)

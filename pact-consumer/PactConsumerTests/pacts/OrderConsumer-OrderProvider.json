@@ -1,0 +1,105 @@
+{
+  "consumer": {
+    "name": "OrderConsumer"
+  },
+  "interactions": [
+    {
+      "description": "A valid create product request",
+      "providerStates": [
+        {
+          "name": "The product already exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "price": 2000.0,
+          "productDescription": "Macbook air with M1 processor",
+          "productID": 1,
+          "productName": "Macbook air"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/v1/create"
+      },
+      "response": {
+        "body": {
+          "message": "The Product already exists"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.message": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid create product request",
+      "providerStates": [
+        {
+          "name": "There is a new product"
+        }
+      ],
+      "request": {
+        "body": {
+          "price": 2000.0,
+          "productDescription": "Macbook air with M1 processor",
+          "productID": 1,
+          "productName": "Macbook air"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/v1/create"
+      },
+      "response": {
+        "body": {
+          "message": "Product is created successfully"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.message": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "OrderProvider"
+  }
+}
