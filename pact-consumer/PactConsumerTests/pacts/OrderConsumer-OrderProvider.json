@@ -68,7 +68,8 @@
       },
       "response": {
         "body": {
-          "message": "Product is created successfully"
+          "message": "Product is created successfully",
+          "status": "successful"
         },
         "headers": {
           "Content-Type": "application/json; charset=utf-8"
@@ -76,6 +77,14 @@
         "matchingRules": {
           "body": {
             "$.message": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.status": {
               "combine": "AND",
               "matchers": [
                 {
