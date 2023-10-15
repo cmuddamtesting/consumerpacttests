@@ -47,7 +47,8 @@ namespace PactConsumerTests
                 .WithJsonBody(
                     new
                     {
-                        message = Match.Type("Product is created successfully")
+                        message = Match.Type("Product is created successfully"),
+                        status = Match.Type("successful")
                     }
                 );
 
