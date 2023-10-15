@@ -52,7 +52,8 @@ namespace PactConsumerTests
                         status2 = Match.Type("successful"),
                         status3 = Match.Type("successful"),
                         status4 = Match.Type("successful"),
-                        status5 = Match.Type("successful")
+                        status5 = Match.Type("successful"),
+                        status6 = Match.Type("successful")
                     }
                 );
 

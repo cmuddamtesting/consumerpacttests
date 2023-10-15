@@ -9,5 +9,6 @@
 
         public string Status4 { get; set; }
         public string Status5 { get; set; }
+        public string Status6 { get; set; }
     }
 }
