@@ -4,5 +4,6 @@
     {
         public string Message { get; set; }
         public string Status { get; set; }
+        public string Status2 { get; set; }
     }
 }
