@@ -8,5 +8,6 @@
         public string Status3 { get; set; }
 
         public string Status4 { get; set; }
+        public string Status5 { get; set; }
     }
 }
