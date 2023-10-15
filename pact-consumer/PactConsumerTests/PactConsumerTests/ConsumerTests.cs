@@ -49,7 +49,7 @@ namespace PactConsumerTests
                     {
                         message = Match.Type("Product is created successfully"),
                         status = Match.Type("successful"),
-                        status2 = Match.Type("successful")
+                        status2 = Match.Type("successful"),
                         status3 = Match.Type("successful")
                     }
                 );
