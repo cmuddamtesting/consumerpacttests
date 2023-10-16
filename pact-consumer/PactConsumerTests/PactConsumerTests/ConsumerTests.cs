@@ -79,7 +79,8 @@ namespace PactConsumerTests
                 .WithJsonBody(
                     new
                     {
-                        message = Match.Type("The Product already exists")
+                        message = Match.Type("The Product already exists"),
+                        sttus = Match.Type("Passed")
                     }
                 );
 
